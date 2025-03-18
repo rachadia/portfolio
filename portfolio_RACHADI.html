@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rachadi Adalio | Développeur Full Stack</title>
+  <style>
+    :root {
+      --primary: #2d3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --grey: #95a5a6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-color: var(--primary);
+      transform: skewY(-2deg);
+      z-index: -1;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .profile-info {
+      flex: 2;
+    }
+    
+    .profile-pic {
+      flex: 1;
+      text-align: right;
+    }
+    
+    .profile-pic img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid var(--secondary);
+      object-fit: cover;
+    }
+    
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    
+    h2 {
+      color: var(--secondary);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--light);
+    }
+    
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--secondary);
+      display: inline-block;
+    }
+    
+    .about {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .timeline {
+      position: relative;
+      margin: 40px 0;
+    }
+    
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15px;
+      height: 100%;
+      width: 3px;
+      background-color: var(--secondary);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-left: 50px;
+      margin-bottom: 40px;
+    }
+    
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--secondary);
+      border: 5px solid white;
+    }
+    
+    .timeline-date {
+      font-size: 14px;
+      color: var(--grey);
+      margin-bottom: 5px;
+    }
+    
+    .timeline-title {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .timeline-company {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    
+    .timeline-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .timeline-content ul {
+      margin-left: 20px;
+    }
+    
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .skill-category {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-category h3 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--grey);
+    }
+    
+    .skill-item {
+      margin-bottom: 15px;
+    }
+    
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background-color: var(--light);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      background-color: var(--secondary);
+    }
+    
+    .education {
+      background-color: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .education-item {
+      margin-bottom: 25px;
+    }
+    
+    .education-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .education-title {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .education-place {
+      font-size: 16px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .project-img {
+      width: 100%;
+      height: 200px;
+      background-color: var(--grey);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+    
+    .project-content {
+      padding: 20px;
+    }
+    
+    .project-title {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .technology {
+      background-color: var(--light);
+      color: var(--dark);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    
+    footer {
+      background-color: var(--primary);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .copyright {
+      margin-top: 20px;
+      color: var(--grey);
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      
+      .profile-pic {
+        margin-bottom: 30px;
+      }
+      
+      .contact {
+        justify-content: center;
+      }
+      
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="profile-info">
+          <h1>Rachadi Adalio</h1>
+          <h2>Graphiste / Webdesigner</h2>
+          <p>Je dispose de 6 années d’expérience progressive en tant que développeur Front-End, dont 5 années passées au sein d’une grande entreprise où j’ai exercé les fonctions de développeur Front-End Designer / Intégrateur.</p>
+          
+          <div class="contact">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>06 39 00 22 52</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>keavinwilson@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>5, rue Charan, 97630 Acoua, Mayotte</span>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <span>@adaliorachadi</span>
+            </div>
+          </div>
+        </div>
+        <div class="profile-pic">
+          <img src="./image/IMG_7511.JPG" alt="Rachadi Adalio">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">À propos</h2>
+      <div class="about">
+        <p>Le fait de travailler pour une grande entreprise m'a aidé à améliorer ma précision et à apprendre à fournir un travail de qualité supérieure en un temps limité.
+
+            Je suis constamment en train de me perfectionner dans l'utilisation de nouveaux outils et langages. Designer, Intégrer des projets variés est extrêmement enrichissant, et c'est toujours un défi à relever.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">Expérience professionnelle</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Juillet 2024 - Aujourd'hui</div>
+          <h3 class="timeline-title">TSH - Dossier patient Informatique</h3>
+          <div class="timeline-company">Centre Hospitalier de Mayotte</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Gestion du DPI: Garantir les accès, suivi des projets d'évolution, résolution d'incidents techniques, mise en place de nouvelles solutions (questionnaires, courriers).</li>
+              <li>Support utilisateurs: Assistance par différents canaux (email, hotline, présentiel), formation des utilisateurs aux nouvelles fonctionnalités.</li>
+              <li>Extraction de données: Réalisation de requêtes SQL et utilisation d'outils BI pour produire des rapports et des analyses.</li>
+              <li>Amélioration des processus: Proposition et mise en œuvre de solutions innovantes pour optimiser l'utilisation du DPI.</li>
+              <li>Automatisation des tâches récurrentes pour gagner en efficacité.</li>
+              <li>Accompagnement des utilisateurs dans l'utilisation du DPI.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">Avril 2018 - Septembre 2024</div>
+          <h3 class="timeline-title">Ingénieurs d'Applications</h3>
+          <div class="timeline-company">Carrefour CSI, Massy</div>
+          <div class="timeline-content">
+            <ul>
+              <li>Développement d'Applications Mobiles: Réalisation de solutions mobiles en Kotlin et Flutter pour le suivi de traçabilité des produits, déployées dans l'Hexagone et à l'international.</li>
+              <li>Rédaction de cahiers des charges fonctionnels et techniques pour des projets de développement d'applications web et mobiles.</li>
+              <li>Conception et Modélisation: Utilisation de UML pour la planification et la communication des architectures d'applications complexes.</li>
+              <li>Intégration API: Développement d'API RESTful et intégration de microservices.</li>
+              <li>Outils de Développement: Utilisation de Git, Docker, CI/CD (Jenkins, GitLab).</li>
+              <li>Cloud Computing: Connaissances des services cloud (AWS, Azure, Google Cloud).</li>
+              <li>Méthodes Agiles: Participation active aux cérémonies Agile (sprint planning, rétrospectives).</li>
+              <li>Déploiement Conteneurisé: Mise en œuvre de solutions sur Kubernetes et Docker.</li>
+              <li>Mentorat: Encadrement et formation de développeurs juniors ou d'alternants.</li>
+              <li>Collaboration avec IBM: Conduite de projets innovants intégrant des technologies vocales pour les entrepôts en France.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title">Compétences</h2>
+      
+      <div class="skills">
+        <div class="skill-category">
+          <h3>Développement</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>JavaScript / TypeScript</span>
+              <span>90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Angular</span>
+              <span>80%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Python</span>
+              <span>75%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Wordpress</span>
+              <span>15%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 15%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Design</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Figma</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 80%;"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Canva</span>
+                <span>70%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress" style="width: 70%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-name">
+                  <span>Adobe</span>
+                  <span>40%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 40%;"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-name">
+                  <span>InDesign</span>
+                  <span>25%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 25%;"></div>
+                </div>
+              </div>
+          </div>
+        
+        <div class="skill-category">
+          <h3>Mobile</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Flutter</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Kotlin</span>
+              <span>80%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Bases de données</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>MySQL</span>
+              <span>90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>PostgreSQL</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>MongoDB</span>
+              <span>75%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>DevOps & Cloud</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Docker</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Kubernetes</span>
+              <span>80%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>CI/CD</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>AWS/Azure/GCP</span>
+              <span>75%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Méthodologies</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Agile / Scrum</span>
+              <span>95%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>UML</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Langues</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Français</span>
+              <span>100%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Shimaoré</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Kiboushi</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Anglais</span>
+              <span>75%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section">
+    <div class="container">
+      <h2 class="section-title">Formation</h2>
+      
+      <div class="education">
+        <div class="education-item">
+          <h3 class="education-title">Ingénieur, Master 2: Architecte Logiciel, Développeur d'Application, Spé: Blockchain</h3>
+          <div class="education-place">ETNA, Ivry / Seine</div>
+          <p>Niveau 7: Bac +5</p>
+        </div>
+        
+        <div class="education-item">
+          <h3 class="education-title">BTS: Système Numérique Informatique et Réseau</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Projets réalisés</h2>
+      
+      <div class="projects">
+
+        <div class="project-card">
+            <div class="project-img">
+              <i class="fas fa-server fa-3x"></i>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Création de flyer</h3>
+              <p>Création d'un flyer avec Qr code pour un restaurant, pour permettre à ses clients de découvrir ses menus via le Qr code.</p>
+              <div class="technologies">
+                <span class="technology">Canvas</span>
+                <span class="technology">Html - Css</span>
+              </div>
+            </div>
+          </div>
+
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-mobile-alt fa-3x"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Application Mobile de Traçabilité</h3>
+            <p>Développement d'une application mobile pour le suivi de traçabilité des produits Carrefour, déployée en France et à l'international.</p>
+            <div class="technologies">
+              <span class="technology">Kotlin</span>
+              <span class="technology">Flutter</span>
+              <span class="technology">RESTful API</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-microphone fa-3x"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Solutions Vocales pour Entrepôts</h3>
+            <p>Collaboration avec IBM pour l'intégration de technologies vocales dans les entrepôts Carrefour en France, améliorant l'efficacité logistique.</p>
+            <div class="technologies">
+              <span class="technology">IBM Watson</span>
+              <span class="technology">Node.js</span>
+              <span class="technology">API Integration</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-hospital fa-3x"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Gestion du Dossier Patient Informatisé</h3>
+            <p>Optimisation et maintenance du système de dossier patient informatisé au Centre Hospitalier de Mayotte, incluant la création de nouveaux formulaires et l'automatisation de processus.</p>
+            <div class="technologies">
+              <span class="technology">SQL</span>
+              <span class="technology">BI Tools</span>
+              <span class="technology">Process Automation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">
+            <i class="fas fa-server fa-3x"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Infrastructure Microservices</h3>
+            <p>Mise en place d'une architecture de microservices conteneurisés pour les applications internes de Carrefour, améliorant la scalabilité et la maintenance.</p>
+            <div class="technologies">
+              <span class="technology">Docker</span>
+              <span class="technology">Kubernetes</span>
+              <span class="technology">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <h2>Contactez-moi</h2>
+      
+      <div class="social-links">
+        <a href="#" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      
+      <div class="copyright">
+        © 2025 Rachadi Adalio. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
