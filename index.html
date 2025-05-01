@@ -171,6 +171,30 @@ grid-column: 1;
 .grid-item-2 {
 grid-column: 2;
 }
+
+.avatar-mobile {
+    display: none;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+}
+
+@media screen and (max-width: 992px) {
+    .grid-item-2 {
+        display: none;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .avatar-mobile {
+        display: block;
+    }
+}
       
       /* Hero Section */
       .hero {
@@ -575,6 +599,7 @@ grid-column: 2;
           <div class="grid-container">
             <div class="grid-item-1">
               <div class="hero-content">
+                <img src="images/avatar.jpg" alt="Rachadi Adalio" class="avatar-mobile">
                 <h1>Bonjour, je suis <span>Rachadi Adalio</span></h1>
                 <p>Designer, Développeur/ Intégrateur Web spécialisé dans la création d'expériences numériques exceptionnelles. Je transforme des idées complexes en solutions élégantes et intuitives.</p>
                 <a href="#contact" class="cta-button">Travaillons ensemble</a>
@@ -780,7 +805,7 @@ grid-column: 2;
                           <span class="project-tag">Blockchain</span>
                       </div>
                       <h3>App. d'identification numérique</h3>
-                      <p>Mise en place d’un système d’identification numérique
+                      <p>Mise en place d'un système d'identification numérique
                           sécurisé reposant sur la technologie blockchain,
                           apportant une solution innovante aux problématiques de
                           sécurité et de modernisation.</p>
@@ -803,9 +828,9 @@ grid-column: 2;
                           <span class="project-tag">IOT</span>
                           <span class="project-tag">Salon VIVA Technology 2019</span>
                       </div>
-                      <h3>IOT – “Et la lumière fut”</h3>
-                      <p>Déploiement d’un projet IoT pour la mise en place d’un
-                          éclairage public intelligent, ayant permis d’optimiser les
+                      <h3>IOT – "Et la lumière fut"</h3>
+                      <p>Déploiement d'un projet IoT pour la mise en place d'un
+                          éclairage public intelligent, ayant permis d'optimiser les
                           ressources énergétiques et démontré une capacité à
                           innover dans des contextes de transformation urbaine
                           numérique.</p>
